@@ -1,0 +1,27 @@
+section.new-tweet { 
+    padding: 10px;
+    background-color: #eee;
+    border-radius: 5px; 
+}
+
+section h2 { 
+    border-bottom: 1px solid black 
+}
+
+/* the text area to type stuff  */ 
+form textarea { 
+    width: 100%;
+    padding: 5px;   
+}
+
+/*text counter button*/ 
+span.counter {
+    float:right;
+    font-style:italic;
+    padding-right: 10px;
+}
+
+/* tweet button */ 
+form input {
+    margin: 0; 
+}
