@@ -98,7 +98,7 @@ return $tweet;
 
 function renderTweets(tweets) {
   for(let i =0; i < tweets.length; i++) {
-      $('#tweets-container').append(createTweetElement(tweets[i]));
+      $('#tweets-container').prepend(createTweetElement(tweets[i]));
   }
 
 }
@@ -107,16 +107,24 @@ function renderTweets(tweets) {
 $('form').on('submit', function(tweet){
   tweet.preventDefault(); 
   var data = $('form').serialize(); 
-  console.log(data);
+  var textAreaLength = $('form textarea').val(); 
+  if(textAreaLength.length === 0) {
+    alert('Text area cannot be empty')
+  } else if (textAreaLength.length > 140) {
+    alert('Text can not be more than 140 characters!')
+  } else {
+    $.ajax('/tweets', {
+      method: 'POST', 
+      data: data
+    }).done(function(res){
+      loadTweets(res); 
+      $('form textarea').val('')
+    })
+  }
+
 })
 
-$.ajax('/tweets', {
-  method: 'POST', 
-  data: data
-}).done(function(){
-  console.log(data); 
-  $('form textarea').val('')
-}); 
+ 
 
 function loadTweets() {
   $.ajax({
@@ -127,7 +135,7 @@ function loadTweets() {
   })
 }
 
-loadTweets();
+//loadTweets();
 
 
 }); 
