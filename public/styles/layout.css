@@ -33,7 +33,7 @@ main.container {
   background-color: white; 
 }
 
-section.user-tweets {
+section.tweets-container {
   margin-top: 10px;
   padding: 10px;
 }
