@@ -21,6 +21,10 @@ span.counter {
     padding-right: 10px;
 }
 
+span.counterError {
+    color: red; 
+}
+
 /* tweet button */ 
 form input {
     margin: 0; 
