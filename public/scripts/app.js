@@ -5,6 +5,8 @@
  */
 
 // Test / driver code (temporary). Eventually will get this from the server
+$(document).ready(function () {
+
 const tweetData = {
   "user": {
     "name": "Newton",
@@ -70,9 +72,6 @@ const data = [
   }
 ];
 
-$(document).ready(function () {
-
-
 function createTweetElement(tweet) {
   let $tweet = `<article class='tweet'> 
   <header>
@@ -97,10 +96,6 @@ return $tweet;
 
 
 
-var $tweet = createTweetElement(tweetData); 
-$('#tweets-container').append($tweet); 
-//console.log($('#user-tweets').html());
-
 function renderTweets(tweets) {
   for(let i =0; i < tweets.length; i++) {
       $('#tweets-container').append(createTweetElement(tweets[i]));
@@ -108,7 +103,38 @@ function renderTweets(tweets) {
 
 }
 
-renderTweets(data);
+
+$('form').on('submit', function(tweet){
+  tweet.preventDefault(); 
+  var data = $('form').serialize(); 
+  console.log(data);
+})
+
+$.ajax('/tweets', {
+  method: 'POST', 
+  data: data
+}).done(function(){
+  console.log(data); 
+  $('form textarea').val('')
+}); 
+
+function loadTweets() {
+  $.ajax({
+    url: '/tweets',
+    method: 'GET',
+    success: function(tweetdata) {
+      renderTweets(tweetdata);}
+  })
+}
+
+loadTweets();
+
 
 }); 
-//console.log(renderTweets(data));
+
+
+
+
+
+
+
