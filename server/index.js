@@ -16,12 +16,12 @@ app.use(express.static("public"));
 const MongoClient = require("mongodb").MongoClient; 
 const MONGODB_URI = "mongodb://localhost:27017/tweeter"; 
 
-MongoClient.connect(MONGODB_URI, (err,db) => {
+MongoClient.connect(MONGODB_URI, (err,client) => {
   if(err) {
     console.error(`Failed to connect: ${MONGODB_URI}`); 
     throw err; 
   }
-
+  const db = client.db('tweeter')
   console.log(`Connected to mongodb: ${MONGODB_URI}`); 
   const DataHelpers = require("./lib/data-helpers.js")(db);
   const tweetsRoutes = require("./routes/tweets")(DataHelpers);
