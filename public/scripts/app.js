@@ -15,6 +15,7 @@ $(document).ready(function () {
       method: 'GET',
       success: function (tweetdata) {
         renderTweets(tweetdata);
+        $('.counter').html(140)
       }
     })
   }
@@ -70,7 +71,7 @@ $(document).ready(function () {
         data: data
       }).done(function (res) {
         loadTweets(res);
-        $('form textarea').val('')
+        $('form textarea').val(''); 
       })
     }
   })
