@@ -7,6 +7,8 @@
 // Test / driver code (temporary). Eventually will get this from the server
 $(document).ready(function () {
 
+  loadTweets();
+
 const tweetData = {
   "user": {
     "name": "Newton",
@@ -72,22 +74,30 @@ const data = [
   }
 ];
 
+function escape(str) {
+  var div = document.createElement('div');
+  div.appendChild(document.createTextNode(str));
+  return div.innerHTML;
+}
+
+
+
 function createTweetElement(tweet) {
   let $tweet = `<article class='tweet'> 
   <header>
-  <img src="${tweet.user.avatars.small}">
-  <h2>${tweet.user.name}</h2>
-  <span class='user-handle'>${tweet.user.handle}</span>
+  <img src="${escape(tweet.user.avatars.small)}">
+  <h2>${escape(tweet.user.name)}</h2>
+  <span class='user-handle'>${escape(tweet.user.handle)}</span>
   </header>
   
-  <p>${tweet.content.text}</p> 
+  <p>${escape(tweet.content.text)}</p> 
   <footer> 
   <span class ='icons'> 
       <i class="fas fa-flag"></i>
       <i class="fas fa-retweet"></i>
       <i class="fas fa-heart"></i>
   </span>
-  ${tweet.created_at}
+  ${escape(tweet.created_at)}
   </footer>
 </article>`
 
@@ -97,7 +107,8 @@ return $tweet;
 
 
 function renderTweets(tweets) {
-  for(let i =0; i < tweets.length; i++) {
+  $('#tweets-container').empty()
+  for(let i = 0; i < tweets.length; i++) {
       $('#tweets-container').prepend(createTweetElement(tweets[i]));
   }
 
@@ -122,9 +133,13 @@ $('form').on('submit', function(tweet){
     })
   }
 
-})
+  $('#nav-bar button').click(function() {
+    $('section.new-tweet').slideToggle("slow");
+    $('section.new-tweet textarea').focus().select(); 
+  
+  }); 
 
- 
+})
 
 function loadTweets() {
   $.ajax({
@@ -134,9 +149,6 @@ function loadTweets() {
       renderTweets(tweetdata);}
   })
 }
-
-//loadTweets();
-
 
 }); 
 

@@ -25,3 +25,25 @@ nav#nav-bar {
       height: 80px; 
   }
 
+  #nav-bar button {
+    float: right ; 
+    width: 100px;
+    height: 50px;
+    margin-top: 15px; 
+    border-radius: 5px; 
+    border: 1px solid black;  
+    background-color: #eee; 
+    color: #00a087
+  }
+
+.compose-button i {
+     float: left; 
+
+ }
+
+  #nav-bar button:hover {
+    background-color: white;
+    color: black; 
+    cursor: pointer; 
+
+  }
