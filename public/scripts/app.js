@@ -1,3 +1,5 @@
+/* eslint-env browser */
+/* global $ */
 /*
  * Client-side JS logic goes here
  * jQuery is already loaded
@@ -29,7 +31,9 @@ $(document).ready(function () {
 
 
   function createTweetElement(tweet) {
-    let $tweet = `<article class='tweet'> 
+    let dateCreated = humanizeDuration(new Date() - tweet.created_at, {units: ['d', 'm'], round:true})
+    let $tweet = $(`<article class='tweet'> 
+
   <header>
   <img src="${escape(tweet.user.avatars.small)}">
   <h2>${escape(tweet.user.name)}</h2>
@@ -43,24 +47,36 @@ $(document).ready(function () {
       <i class="fas fa-retweet"></i>
       <i class="fas fa-heart"></i>
   </span>
-  ${escape(tweet.created_at)}
+   ${dateCreated}
   </footer>
-</article>`
+</article>`)
+    $tweet.find('.fa-heart').on('click', function(){
+      //$tweet.addClass('.red')
+      console.log('Clicked/', tweet.content.text);
+      $.ajax('/tweets/likes', {
+        method:'POST', 
+      })
+    });
+
     return $tweet;
   }
 
   function renderTweets(tweets) {
-    $('#tweets-container').empty()
+    $('#tweets-container .fa-heart').off('click');
+    $('#tweets-container').empty();
     for (let i = 0; i < tweets.length; i++) {
       $('#tweets-container').prepend(createTweetElement(tweets[i]));
     }
+     
   }
 
+  
 
-  $('form').on('submit', function (tweet) {
+
+  $('.new-tweet form').on('submit', function (tweet) {
     tweet.preventDefault();
-    var data = $('form').serialize();
-    var textAreaLength = $('form textarea').val();
+    var data = $('.new-tweet form').serialize();
+    var textAreaLength = $('.new-tweet form textarea').val();
     if (textAreaLength.length === 0) {
       alert('Text area cannot be empty')
     } else if (textAreaLength.length > 140) {
@@ -76,6 +92,7 @@ $(document).ready(function () {
     }
   })
 
+  
 
   $('#nav-bar button').click(function () {
     $('section.new-tweet').slideToggle("slow");

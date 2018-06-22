@@ -29,3 +29,7 @@ span.counterError {
 form input {
     margin: 0; 
 }
+
+.red {
+    color: red; 
+}

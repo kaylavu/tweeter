@@ -25,12 +25,25 @@ MongoClient.connect(MONGODB_URI, (err,client) => {
   console.log(`Connected to mongodb: ${MONGODB_URI}`); 
   const DataHelpers = require("./lib/data-helpers.js")(db);
   const tweetsRoutes = require("./routes/tweets")(DataHelpers);
+  const userController = require("./routes/users")(DataHelpers);
   app.use("/tweets", tweetsRoutes);
-
+  app.use("/users",userController); 
 
   app.listen(PORT, () => {
     console.log("Example app listening on port " + PORT);
   });
+
+  app.post("/login", function(req,res) {
+    //if user exists redirect / 
+    //if user doesnt exist error message 
+    //cookie sessions 
+    let username = req.body.email 
+    let password = req.body.password; 
+    console.log("Logged In")
+    res.redirect("/")
+  }); 
+
+ 
 
 })
 
