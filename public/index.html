@@ -36,33 +36,34 @@
         Compose
         <i class="fas fa-edit"></i>
       </button>
+
+      <button id="register-button"> 
+        Register
+        <i class="fas fa-user-plus"></i>
+      </button>
+      
+      
     </nav> 
-    <br>
-    <br> 
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-
-
+   
+<!-- 
     <form id="login-form" method="POST" action="/login">
       <h2>LOGIN</h2>
-      
       USERNAME: <input type="text" name="username"> 
       PASSWORD: <input type="password" name="password">
       <input type="submit" value="login">
-    </form>
-<br> 
-<br>
-<br>
+    </form> -->
+
+    <div id="register-container">
     <form id="register-form" method="POST" action="/users">
       <h2>REGISTER</h2>
-      EMAIL: <input type="text" name="email"> 
-      USERNAME: <input type="text" name="username">
-      PASSWORD: <input type="password" name="password">
-      <input type="submit" value="register">
+      <div class"register-input"><label>EMAIL:</label><input class="l-input" type="text" name="email"> </div>
+      <div class"register-input"><label>USERNAME: </label><input class="l-input" type="text" name="username"> </div>
+      <div class"register-input"><label>PASSWORD:</label><input class="l-input" type="password" name="password"> </div> 
+     
+      
+      <input id="r-btn" type="submit" value="Register">
     </form>
+  </div>
 
     <!-- Page-specific (main) content here -->
     <main class="container">
@@ -77,27 +78,7 @@
           <br> 
 
           <section id='tweets-container'>
-            <!-- <article class='tweet'> 
-              <header>
-                <img src="/images/bird.png">
-                <h2>Kayla Vu</h2>
-                <span class='user-handle'>@kaylavu</span>
-              </header>
-                 
-               <p>My Little tweet here</p> 
-          
-              <footer> 
-                <span class='date created'> 12 days ago </span>
-                <span class ='icons'> 
-                    <i class="fas fa-flag"></i>
-                    <i class="fas fa-retweet"></i>
-                    <i class="fas fa-heart"></i>
-                </span>
-              </footer>
-            </article> -->
           </section>
-            
-         
     </main>
     
     

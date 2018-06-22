@@ -115,3 +115,24 @@ span.icons {
 #login {
   margin-top: 100px; 
 }
+
+#register-container {
+  display:none;
+  margin-top: 100px;
+  margin-left: 850px; 
+ 
+}
+
+label {
+  display: inline-block;
+  width: 100px; 
+}
+
+l-input {
+  width: 200px;
+  height: 30px; 
+}
+
+.register-input {
+  align-items: center; 
+}

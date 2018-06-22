@@ -94,9 +94,13 @@ $(document).ready(function () {
 
   
 
-  $('#nav-bar button').click(function () {
+  $('#nav-bar .compose-button').click(function () {
     $('section.new-tweet').slideToggle("slow");
     $('section.new-tweet textarea').focus().select();
+  });
+
+  $('#register-button').click(function(){
+    $('#register-container').slideToggle("slow"); 
   });
 
 });
