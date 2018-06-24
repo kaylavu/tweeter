@@ -5,7 +5,7 @@ Users are able to compose a message of up to 140 characters and register to a da
 
 
 ## Final Product 
-!["tweeter.png"](https://github.com/kaylavu/tinyApp/blob/master/docs/urls-index.png)
+!["tweeter.png"](https://github.com/kaylavu/tweeter/blob/master/docs/tweeter.png)
 
 
 
